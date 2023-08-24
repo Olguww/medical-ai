@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medical AI</title>
+    <style>
+        body {
+            background-image: url("/static/hastane.png");
+            text-align: center;
+            margin: 0;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        
+        .navbar {
+            background-color: red;
+            padding: 10px 0;
+        }
+
+        .navbar h1 {
+            margin: 0;
+        }
+
+        h1 {
+            color: blue;
+        }
+        
+        #conversation {
+            max-height: 300px;
+            overflow-y: auto;
+            display: 'flex';
+            flex-direction: row-reverse;
+        }
+
+        #conversation p {
+            background-color: white;
+            padding: 1em;
+            margin: 0.5em;
+            border-radius: 8px;
+            color: #4d4d4d;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        #question {
+            margin-top: 10px;
+        }
+        
+        button {
+            margin-top: 10px;
+        }
+        
+        #conversation {
+            text-align: left;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Medical AI - Hasta Sorgu</h1>
+    </div>
+    <input id="user" placeholder="ADI..." style="margin-top: 2em;" />
+    <br/>
+    <textarea placeholder="Sorun ne?" id="question" rows="4" cols="50"></textarea><br>
+    <button onclick="askQuestion()">Sor</button><br><br>
+    <div id="conversation"></div>
+
+    <script>
+        var user = "";
+        var userElement = document.getElementById("user");
+        userElement.addEventListener("change", (e) => {
+            user = e.target.value;
+        });
+        function askQuestion() {
+            var question = document.getElementById("question").value.trim();
+            var conversation = document.getElementById("conversation");
+
+            if (question === "") {
+                return;
+            }
+
+            conversation.innerHTML += "<p><strong>Hasta:</strong> " + question + "</p>";
+            getAnswer(question);
+        }
+
+        function getAnswer(question) {
+            fetch("/get_answer", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    question,
+                    user
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                var conversation = document.getElementById("conversation");
+                conversation.innerHTML += "<p><strong>Medical-AI:</strong> " + data.answer + "</p>";
+            });
+        }
+    </script>
+</body>
+</html>

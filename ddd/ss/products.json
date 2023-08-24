@@ -1,0 +1,6 @@
+[
+    {"title": "Nars Kapatici", "description": "Yogun kapatici renk esitleme.", "price": 79.90, "image": "urun1.png"},
+    {"title": "Nars Fondoten", "description": "Mat bitis renk esitligi.", "price": 89.90, "image": "urun2.png"},
+    {"title": "Nars Allik", "description": "Parlak ve canli.", "price": 59.90, "image": "urun3.png"},
+    {"title": "Nars Ruj", "description": "Kremsi doku yapismayan dudaklar.", "price": 39.90, "image": "urun4.png"}
+]

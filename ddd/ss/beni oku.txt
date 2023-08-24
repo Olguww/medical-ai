@@ -1,0 +1,14 @@
+- nodejs indirmek gereklidir
+- PHP gereklidir
+- "project" ismi ile masaüstüne çıkatın
+- VS code ta bu klasörü açın VS code da terminal ve CMD açın
+ 
+-'npm install -g serve' yi çalıştırın
+
+- "cd client" komutunu calıstırın
+- daha sonra terminal ve cmd yi çalıştırın 
+- 'serve -s build -p 80' bu komutu çalıştırın
+
+- birkez daha cmd çalıştırın
+-'php -S localhost:8080' localhost a açmak için bu komutu çalıştırın
+- chrome da localhost yazarak ulaşabilirsiniz
